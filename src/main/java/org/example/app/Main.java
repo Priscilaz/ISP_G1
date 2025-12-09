@@ -1,21 +1,26 @@
 package org.example.app;
 
-import org.example.animal.Animal;
-import org.example.animal.Dog;
-import org.example.animal.Fish;
-import org.example.behaviors.Walkable;
+
+import org.example.devices.DisposableCamera;
+import org.example.devices.Phone;
+import org.example.interfaces.Powerable;
+import org.example.interfaces.Rechargeable;
 
 public class Main {
     public static void main(String[] args) {
 
-        Animal dog = new Dog();
-        Animal fish = new Fish();
+        // Dispositivo recargable
+        Powerable phone = new Phone();
+        phone.turnOn();
+        ((Rechargeable) phone).charge();
+        phone.turnOff();
 
-        dog.makeSound();
-        ((Walkable) dog).walk();  // OK
+        System.out.println("-----------------------");
 
-        fish.makeSound();
-        // Fish no camina → no se llama walk(), no hay excepciones
+        // Dispositivo NO recargable
+        Powerable camera = new DisposableCamera();
+        camera.turnOn();
+        camera.turnOff();
     }
 }
 
